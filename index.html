@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>神戶・大阪紀行｜2026.07.07–07.13</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#232220;
+    --indigo:#2B3A5C;
+    --indigo-deep:#19243A;
+    --washi:#EDE6D6;
+    --washi-light:#F7F3E9;
+    --hanko:#B23B3B;
+    --hanko-dark:#8C2E2E;
+    --bamboo:#5C7A5C;
+    --sumi:#78766C;
+    --line:#DCD2BA;
+    --shadow: 0 2px 10px rgba(25,36,58,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--washi);
+    color:var(--ink);
+    font-family:'Noto Sans TC', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:'Noto Serif TC', serif; margin:0;}
+
+  /* ---------- Header ---------- */
+  header.top{
+    background:linear-gradient(180deg, var(--indigo-deep), var(--indigo) 120%);
+    color:var(--washi-light);
+    padding:36px 20px 46px;
+    position:relative;
+    text-align:center;
+    overflow:hidden;
+  }
+  header.top .eyebrow{
+    font-size:12px;
+    letter-spacing:0.35em;
+    text-transform:uppercase;
+    opacity:0.65;
+    margin:0 0 10px;
+    font-weight:500;
+  }
+  header.top h1{
+    font-size:clamp(28px,6vw,40px);
+    font-weight:900;
+    letter-spacing:0.05em;
+  }
+  header.top .dates{
+    margin:10px 0 0;
+    font-size:14px;
+    letter-spacing:0.12em;
+    opacity:0.85;
+  }
+  header.top svg.wave{
+    position:absolute; left:0; right:0; bottom:-1px; width:100%; height:28px;
+    display:block;
+  }
+
+  /* ---------- Tabs ---------- */
+  nav.tabs{
+    display:flex;
+    gap:6px;
+    padding:14px 14px 0;
+    max-width:720px;
+    margin:0 auto;
+    overflow-x:auto;
+    scrollbar-width:none;
+    position:sticky;
+    top:0;
+    background:var(--washi);
+    z-index:20;
+    border-bottom:1px solid var(--line);
+  }
+  nav.tabs::-webkit-scrollbar{display:none;}
+  nav.tabs button{
+    flex:0 0 auto;
+    background:transparent;
+    border:none;
+    font-family:'Noto Serif TC', serif;
+    font-size:15px;
+    font-weight:700;
+    color:var(--sumi);
+    padding:10px 16px 14px;
+    cursor:pointer;
+    position:relative;
+    white-space:nowrap;
+  }
+  nav.tabs button::after{
+    content:"";
+    position:absolute;
+    left:10%; right:10%; bottom:0;
+    height:3px;
+    background:transparent;
+    border-radius:3px 3px 0 0;
+  }
+  nav.tabs button.active{color:var(--indigo-deep);}
+  nav.tabs button.active::after{background:var(--hanko);}
+
+  main{
+    max-width:720px;
+    margin:0 auto;
+    padding:22px 16px 60px;
+  }
+  .panel{display:none;}
+  .panel.active{display:block; animation:fade .25s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:none;}}
+
+  .panel-intro{
+    font-size:13px;
+    color:var(--sumi);
+    margin:0 0 18px;
+    padding-left:2px;
+  }
+
+  /* ---------- Itinerary ---------- */
+  .day{display:flex; gap:14px; margin-bottom:22px; align-items:flex-start;}
+  .stamp-day{
+    flex:0 0 auto;
+    width:46px; height:46px;
+    border-radius:50%;
+    border:2px solid var(--hanko);
+    color:var(--hanko);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Noto Serif TC', serif;
+    font-weight:900;
+    font-size:18px;
+    transform:rotate(-6deg);
+    position:relative;
+    background:var(--washi-light);
+    box-shadow:0 0 0 3px rgba(178,59,59,0.08);
+  }
+  .day-card{
+    flex:1;
+    background:var(--washi-light);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .day-head{
+    display:flex; align-items:baseline; gap:10px;
+    padding:12px 16px;
+    background:rgba(43,58,92,0.06);
+    border-bottom:1px solid var(--line);
+  }
+  .day-head h3{font-size:16px; color:var(--indigo-deep);}
+  .day-head .date{font-size:13px; color:var(--sumi);}
+  ul.timeline{list-style:none; margin:0; padding:12px 16px 14px;}
+  ul.timeline li{
+    display:flex; gap:12px;
+    padding:6px 0;
+    font-size:14px;
+    border-bottom:1px dashed var(--line);
+  }
+  ul.timeline li:last-child{border-bottom:none;}
+  ul.timeline .time{
+    flex:0 0 52px;
+    font-weight:700;
+    color:var(--hanko-dark);
+    font-variant-numeric:tabular-nums;
+  }
+  ul.timeline .desc{flex:1; color:var(--ink);}
+
+  /* ---------- Hotel ---------- */
+  .ticket{
+    display:flex;
+    background:var(--washi-light);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    margin-bottom:16px;
+    overflow:hidden;
+  }
+  .ticket-stub{
+    flex:0 0 56px;
+    background:var(--indigo-deep);
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+  }
+  .ticket-stub::after{
+    content:"";
+    position:absolute; right:-1px; top:0; bottom:0; width:0;
+    border-right:2px dashed var(--washi);
+  }
+  .stamp-mini{
+    writing-mode:vertical-rl;
+    color:var(--washi-light);
+    font-family:'Noto Serif TC', serif;
+    font-weight:700;
+    letter-spacing:0.3em;
+    font-size:13px;
+  }
+  .ticket-body{padding:16px 18px; flex:1;}
+  .ticket-body h3{font-size:16px; color:var(--indigo-deep); margin-bottom:10px;}
+  .ticket-body dl{margin:0; display:grid; grid-template-columns:64px 1fr; row-gap:6px; column-gap:10px; font-size:13.5px;}
+  .ticket-body dt{color:var(--sumi); font-weight:500;}
+  .ticket-body dd{margin:0; color:var(--ink);}
+  .total-bar{
+    text-align:center;
+    font-size:14px;
+    color:var(--indigo-deep);
+    background:rgba(43,58,92,0.08);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px;
+    margin-top:6px;
+  }
+  .total-bar strong{color:var(--hanko-dark); font-family:'Noto Serif TC', serif; font-size:16px;}
+
+  /* ---------- Checklist cards (packing / shopping) ---------- */
+  .card{
+    background:var(--washi-light);
+    border:1px solid var(--line);
+    border-radius:12px;
+    box-shadow:var(--shadow);
+    margin-bottom:18px;
+    overflow:hidden;
+  }
+  .card-head{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:13px 16px;
+    background:rgba(92,122,92,0.10);
+    border-bottom:1px solid var(--line);
+  }
+  .card[data-owner] .card-head{background:rgba(43,58,92,0.08);}
+  .card-head h3{font-size:15.5px; color:var(--indigo-deep);}
+  .card-head .progress{
+    font-size:12.5px;
+    color:var(--sumi);
+    font-variant-numeric:tabular-nums;
+    background:var(--washi);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:2px 10px;
+  }
+  ul.items{list-style:none; margin:0; padding:6px 8px;}
+  li.item{
+    display:flex; align-items:center; gap:8px;
+    padding:9px 8px;
+    border-bottom:1px solid var(--line);
+  }
+  li.item:last-child{border-bottom:none;}
+  label.check{
+    flex:1;
+    display:flex; align-items:center; gap:10px;
+    cursor:pointer;
+    font-size:14.5px;
+    user-select:none;
+  }
+  label.check input[type=checkbox]{
+    position:absolute;
+    opacity:0;
+    width:22px; height:22px;
+  }
+  .stamp{
+    flex:0 0 auto;
+    width:20px; height:20px;
+    border-radius:5px;
+    border:1.6px solid var(--sumi);
+    display:inline-block;
+    position:relative;
+    background:var(--washi-light);
+  }
+  label.check input:checked ~ .stamp{
+    border-color:var(--hanko);
+    background:var(--hanko);
+  }
+  label.check input:checked ~ .stamp::after{
+    content:"";
+    position:absolute; left:5px; top:1.5px;
+    width:6px; height:11px;
+    border:solid var(--washi-light);
+    border-width:0 2px 2px 0;
+    transform:rotate(40deg);
+  }
+  label.check .txt{transition:color .15s, text-decoration-color .15s;}
+  label.check input:checked ~ .txt{color:var(--sumi); text-decoration:line-through; text-decoration-color:var(--sumi);}
+  button.del{
+    flex:0 0 auto;
+    border:none; background:transparent;
+    color:var(--sumi);
+    font-size:18px;
+    line-height:1;
+    cursor:pointer;
+    padding:4px 6px;
+    border-radius:6px;
+  }
+  button.del:hover{color:var(--hanko-dark); background:rgba(178,59,59,0.08);}
+
+  form.add-row{
+    display:flex;
+    gap:8px;
+    padding:10px 12px 14px;
+    border-top:1px dashed var(--line);
+  }
+  form.add-row input[type=text],
+  form.add-row input[type=url]{
+    flex:1;
+    border:1px solid var(--line);
+    background:var(--washi);
+    border-radius:8px;
+    padding:9px 10px;
+    font-size:14px;
+    font-family:inherit;
+    color:var(--ink);
+  }
+  form.add-row input:focus{outline:2px solid var(--indigo); outline-offset:1px;}
+  form.add-row button{
+    flex:0 0 auto;
+    border:none;
+    background:var(--indigo-deep);
+    color:var(--washi-light);
+    font-family:'Noto Serif TC', serif;
+    font-weight:700;
+    font-size:14px;
+    border-radius:8px;
+    padding:0 16px;
+    cursor:pointer;
+  }
+  form.add-row button:hover{background:var(--indigo);}
+  form.add-link{flex-wrap:wrap;}
+  form.add-link .f-title{flex:1 1 100%;}
+  form.add-link .f-url{flex:1;}
+
+  .owner-tag{
+    display:inline-block;
+    font-size:11.5px;
+    color:var(--washi-light);
+    background:var(--indigo);
+    border-radius:20px;
+    padding:2px 10px;
+    margin-left:8px;
+    font-weight:500;
+  }
+
+  /* ---------- Info / links ---------- */
+  li.link-item{gap:10px;}
+  li.link-item .icon{font-size:17px; flex:0 0 auto;}
+  li.link-item a.txt{
+    flex:1;
+    color:var(--indigo-deep);
+    text-decoration:none;
+    font-weight:500;
+    font-size:14.5px;
+    word-break:break-word;
+  }
+  li.link-item a.txt:hover{text-decoration:underline;}
+  .note-box{
+    background:rgba(178,59,59,0.06);
+    border:1px solid rgba(178,59,59,0.25);
+    border-radius:10px;
+    padding:10px 14px;
+    font-size:13px;
+    color:var(--hanko-dark);
+    margin-bottom:18px;
+  }
+
+  footer.credit{
+    text-align:center;
+    font-size:11.5px;
+    color:var(--sumi);
+    padding:20px 0 30px;
+    opacity:0.7;
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <p class="eyebrow">Kansai Journal</p>
+  <h1>神戶・大阪紀行</h1>
+  <p class="dates">2026.07.07 → 2026.07.13</p>
+  <svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none">
+    <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#EDE6D6"></path>
+  </svg>
+</header>
+
+<nav class="tabs">
+  <button class="tab active" data-tab="itinerary">行程</button>
+  <button class="tab" data-tab="hotel">飯店</button>
+  <button class="tab" data-tab="packing">物品清單</button>
+  <button class="tab" data-tab="shopping">購物清單</button>
+  <button class="tab" data-tab="info">其他資訊</button>
+</nav>
+
+<main>
+
+  <!-- ============ 行程 ============ -->
+  <section id="itinerary" class="panel active">
+    <p class="panel-intro">七天六夜・神戶進、關西出。時間為預估，實際依現場狀況調整。</p>
+
+    <div class="day">
+      <div class="stamp-day">1</div>
+      <div class="day-card">
+        <div class="day-head"><h3>Day 1</h3><span class="date">7/7（二）</span></div>
+        <ul class="timeline">
+          <li><span class="time">09:00</span><span class="desc">台南高鐵站集合，買好早餐</span></li>
+          <li><span class="time">09:13</span><span class="desc">台南出發（618車次，5車廂17C）</span></li>
+          <li><span class="time">10:36</span><span class="desc">抵達桃園站</span></li>
+          <li><span class="time">—</span><span class="desc">前往桃園機場，辦理登機</span></li>
+          <li><span class="time">15:15</span><span class="desc">桃園機場（TPE T1）起飛，台灣虎航 IT212</span></li>
+          <li><span class="time">19:00</span><span class="desc">抵達關西機場（KIX T1）</span></li>
+          <li><span class="time">—</span><span class="desc">入境（VJW已完成），申請免稅QR code</span></li>
+          <li><span class="time">20:00</span><span class="desc">搭高速船（視情況）</span></li>
+          <li><span class="time">21:00</span><span class="desc">抵達三宮（神戶市中心），飯店 check in</span></li>
+          <li><span class="time">—</span><span class="desc">覓食，視時間可小逛三宮OPA商業區</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="stamp-day">2</div>
+      <div class="day-card">
+        <div class="day-head"><h3>Day 2</h3><span class="date">7/8（三）</span></div>
+        <ul class="timeline">
+          <li><span class="time">09:00</span><span class="desc">起床出發前往姬路城</span></li>
+          <li><span class="time">10:00</span><span class="desc">抵達姬路城</span></li>
+          <li><span class="time">12:00</span><span class="desc">午餐／逛街</span></li>
+          <li><span class="time">14:00</span><span class="desc">回程</span></li>
+          <li><span class="time">—</span><span class="desc">（有空）途經魚之棚採買</span></li>
+          <li><span class="time">15:00</span><span class="desc">搭纜車看風景</span></li>
+          <li><span class="time">—</span><span class="desc">前往山陽垂水三井Outlet</span></li>
+          <li><span class="time">—</span><span class="desc">視情況逛神戶市區</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="stamp-day">3</div>
+      <div class="day-card">
+        <div class="day-head"><h3>Day 3</h3><span class="date">7/9（四）</span></div>
+        <ul class="timeline">
+          <li><span class="time">一早</span><span class="desc">前往貴船神社</span></li>
+          <li><span class="time">11:00</span><span class="desc">拿流水素麵號碼牌</span></li>
+          <li><span class="time">—</span><span class="desc">逛貴船神社</span></li>
+          <li><span class="time">14:00</span><span class="desc">吃流水素麵（約至15:00）</span></li>
+          <li><span class="time">—</span><span class="desc">下山前往八坂神社一帶（祇園／花見小路／新京極等）</span></li>
+          <li><span class="time">晚上</span><span class="desc">八坂神社點燈、先斗町散步</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="stamp-day">4</div>
+      <div class="day-card">
+        <div class="day-head"><h3>Day 4</h3><span class="date">7/10（五）</span></div>
+        <ul class="timeline">
+          <li><span class="time">一早</span><span class="desc">神戶市區逛逛（視情況）</span></li>
+          <li><span class="time">—</span><span class="desc">前往大阪之家寄放行李，或直接前往宇治</span></li>
+          <li><span class="time">16:00前</span><span class="desc">宇治</span></li>
+          <li><span class="time">—</span><span class="desc">回大阪，MICHI STAY check in（16:00後）</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="stamp-day">5</div>
+      <div class="day-card">
+        <div class="day-head"><h3>Day 5</h3><span class="date">7/11（六）</span></div>
+        <ul class="timeline">
+          <li><span class="time">早上</span><span class="desc">天神橋筋商店街</span></li>
+          <li><span class="time">下午</span><span class="desc">海遊館</span></li>
+          <li><span class="time">—</span><span class="desc">天保山摩天輪</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="stamp-day">6</div>
+      <div class="day-card">
+        <div class="day-head"><h3>Day 6</h3><span class="date">7/12（日）</span></div>
+        <ul class="timeline">
+          <li><span class="time">—</span><span class="desc">U看live</span></li>
+          <li><span class="time">—</span><span class="desc">琇安獨立行程</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="stamp-day">7</div>
+      <div class="day-card">
+        <div class="day-head"><h3>Day 7</h3><span class="date">7/13（一）</span></div>
+        <ul class="timeline">
+          <li><span class="time">10:00前</span><span class="desc">退房</span></li>
+          <li><span class="time">14:00</span><span class="desc">關西機場（KIX T1）起飛，中華航空 CI153</span></li>
+          <li><span class="time">16:00</span><span class="desc">抵達桃園機場（TPE T2）</span></li>
+          <li><span class="time">—</span><span class="desc">轉搭高鐵／台鐵返回台南</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============ 飯店 ============ -->
+  <section id="hotel" class="panel">
+    <p class="panel-intro">共 6 晚，神戶進、大阪出。</p>
+
+    <div class="ticket">
+      <div class="ticket-stub"><span class="stamp-mini">確定</span></div>
+      <div class="ticket-body">
+        <h3>神戶蒙特埃馬納酒店・艾美麗</h3>
+        <dl>
+          <dt>入住</dt><dd>7/7（二）— 7/10（五）・3晚</dd>
+          <dt>房型</dt><dd>三人房（2張單人床＋1張單人床，不含餐食，禁菸）</dd>
+          <dt>費用</dt><dd>總價 NT$5,700・每人 NT$1,900</dd>
+          <dt>代表人</dt><dd>HSUEH HSIUYU</dd>
+          <dt>聯絡人</dt><dd>薛琇裕・+886 0912125219<br>lulujade888@gmail.com</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="ticket">
+      <div class="ticket-stub"><span class="stamp-mini">確定</span></div>
+      <div class="ticket-body">
+        <h3>MICHI STAY（大阪）</h3>
+        <dl>
+          <dt>入住</dt><dd>7/10（五）— 7/13（一）・3晚</dd>
+          <dt>房型</dt><dd>雙臥室公寓（不可退款）</dd>
+          <dt>費用</dt><dd>TWD 12,534（¥53,632）</dd>
+          <dt>住客</dt><dd>Hung Yi An・3名成人</dd>
+          <dt>地址</dt><dd>大阪府大阪市浪速區敷津西2丁目1-5-7<br>リヴビル大国町 612号</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="total-bar">共 6 晚・住宿總計 <strong>TWD 18,234</strong></div>
+  </section>
+
+  <!-- ============ 物品清單 ============ -->
+  <section id="packing" class="panel">
+    <p class="panel-intro">出發前打包用，可勾選、新增或刪除項目。</p>
+
+    <div class="card" data-card data-type="check" data-key="packing-docs">
+      <div class="card-head"><h3>證件與文件</h3><span class="progress" data-progress>0/12</span></div>
+      <ul class="items" data-list>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">護照</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">護照影本</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">電子機票</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">旅遊保險證明</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">飯店訂房確認單</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">大頭照（備用）</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">健保卡</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">信用卡／提款卡</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">高鐵／台鐵票證</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">交通卡</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">日幣現金</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">iPASS Money 儲值</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">身分證</span></label><button class="del" aria-label="刪除">×</button></li>
+      </ul>
+      <form class="add-row" data-add><input type="text" placeholder="+ 新增項目，按 Enter 確認" required></form>
+    </div>
+
+    <div class="card" data-card data-type="check" data-key="packing-electronics">
+      <div class="card-head"><h3>電子用品</h3><span class="progress" data-progress>0/7</span></div>
+      <ul class="items" data-list>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">手機</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">充電器／充電線</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">行動電源</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">相機／記憶卡</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">耳機</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">網卡</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">卡針</span></label><button class="del" aria-label="刪除">×</button></li>
+      </ul>
+      <form class="add-row" data-add><input type="text" placeholder="+ 新增項目，按 Enter 確認" required></form>
+    </div>
+
+    <div class="card" data-card data-type="check" data-key="packing-clothes">
+      <div class="card-head"><h3>衣物</h3><span class="progress" data-progress>0/7</span></div>
+      <ul class="items" data-list>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">上衣（輕薄透氣、排汗材質）</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">短褲／裙子</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">內衣褲（足量）</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">襪子</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">薄外套或防曬外套</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">睡衣</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">帽子</span></label><button class="del" aria-label="刪除">×</button></li>
+      </ul>
+      <form class="add-row" data-add><input type="text" placeholder="+ 新增項目，按 Enter 確認" required></form>
+    </div>
+
+    <div class="card" data-card data-type="check" data-key="packing-shoes">
+      <div class="card-head"><h3>鞋子</h3><span class="progress" data-progress>0/1</span></div>
+      <ul class="items" data-list>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">涼鞋或拖鞋</span></label><button class="del" aria-label="刪除">×</button></li>
+      </ul>
+      <form class="add-row" data-add><input type="text" placeholder="+ 新增項目，按 Enter 確認" required></form>
+    </div>
+
+    <div class="card" data-card data-type="check" data-key="packing-toiletries">
+      <div class="card-head"><h3>盥洗保養用品</h3><span class="progress" data-progress>0/5</span></div>
+      <ul class="items" data-list>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">牙刷牙膏</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">洗面乳／卸妝</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">防曬乳（SPF高、耐汗）</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">保濕、保養</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">化妝品（依需求）</span></label><button class="del" aria-label="刪除">×</button></li>
+      </ul>
+      <form class="add-row" data-add><input type="text" placeholder="+ 新增項目，按 Enter 確認" required></form>
+    </div>
+
+    <div class="card" data-card data-type="check" data-key="packing-medicine">
+      <div class="card-head"><h3>藥品</h3><span class="progress" data-progress>0/6</span></div>
+      <ul class="items" data-list>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">個人常備藥</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">腸胃藥</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">感冒藥</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">防蚊液</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">曬後修復／蘆薈膠</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">個人保健品</span></label><button class="del" aria-label="刪除">×</button></li>
+      </ul>
+      <form class="add-row" data-add><input type="text" placeholder="+ 新增項目，按 Enter 確認" required></form>
+    </div>
+
+    <div class="card" data-card data-type="check" data-key="packing-loot">
+      <div class="card-head"><h3>購物／戰利品</h3><span class="progress" data-progress>0/3</span></div>
+      <ul class="items" data-list>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">摺疊行李袋</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">真空壓縮袋</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">環保購物袋</span></label><button class="del" aria-label="刪除">×</button></li>
+      </ul>
+      <form class="add-row" data-add><input type="text" placeholder="+ 新增項目，按 Enter 確認" required></form>
+    </div>
+
+    <div class="card" data-card data-type="check" data-key="packing-misc">
+      <div class="card-head"><h3>其他隨身物品</h3><span class="progress" data-progress>0/7</span></div>
+      <ul class="items" data-list>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">折疊雨傘</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">雨衣</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">小型隨身包</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">後背包</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">隨身小包</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">衛生紙</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">濕紙巾</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">涼感噴霧／涼感貼</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">筆（入境卡填寫用）</span></label><button class="del" aria-label="刪除">×</button></li>
+      </ul>
+      <form class="add-row" data-add><input type="text" placeholder="+ 新增項目，按 Enter 確認" required></form>
+    </div>
+
+  </section>
+
+  <!-- ============ 購物清單 ============ -->
+  <section id="shopping" class="panel">
+    <p class="panel-intro">依旅伴分區，可勾選、新增或刪除項目。</p>
+
+    <div class="card" data-card data-type="check" data-owner="yian" data-key="shopping-yian">
+      <div class="card-head"><h3>洪懌安（自己）</h3><span class="progress" data-progress>0/15</span></div>
+      <ul class="items" data-list>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">UHAグミサプリ 鐵&amp;葉酸軟糖</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">眼藥水</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">足膜</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">面膜</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">曼秀雷頓護唇膏</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">大創耳夾式耳機（媽媽）</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">扁桃腺口腔噴霧（媽媽）</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">口內膏（媽媽）</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">益生菌（媽媽）</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">休足時間（媽媽）</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">鎂噴劑（媽媽）</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">大正百保能GOLD A錠劑感冒藥（媽媽，選錠劑非粉末）</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">好用削皮刀（媽媽）</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">柴魚塊（媽媽）</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">葉黃素 x2瓶（外婆）</span></label><button class="del" aria-label="刪除">×</button></li>
+      </ul>
+      <form class="add-row" data-add><input type="text" placeholder="+ 新增項目，按 Enter 確認" required></form>
+    </div>
+
+    <div class="card" data-card data-type="check" data-owner="hsiuyu" data-key="shopping-hsiuyu">
+      <div class="card-head"><h3>Hsiuyu Hsueh</h3><span class="progress" data-progress>0/2</span></div>
+      <ul class="items" data-list>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">ミルク生活プラス（大人のための粉ミルク）x10包</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">蒟蒻皂</span></label><button class="del" aria-label="刪除">×</button></li>
+      </ul>
+      <form class="add-row" data-add><input type="text" placeholder="+ 新增項目，按 Enter 確認" required></form>
+    </div>
+
+    <div class="card" data-card data-type="check" data-owner="yayun" data-key="shopping-yayun">
+      <div class="card-head"><h3>雅云</h3><span class="progress" data-progress>0/3</span></div>
+      <ul class="items" data-list>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">MARUSHIGE 呼吸巧克力</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">canmake蜜粉</span></label><button class="del" aria-label="刪除">×</button></li>
+        <li class="item"><label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt">SHIRO香水（隨緣有經過再買）</span></label><button class="del" aria-label="刪除">×</button></li>
+      </ul>
+      <form class="add-row" data-add><input type="text" placeholder="+ 新增項目，按 Enter 確認" required></form>
+    </div>
+
+  </section>
+
+  <!-- ============ 其他資訊 ============ -->
+  <section id="info" class="panel">
+    <p class="panel-intro">旅行手冊的參考資料，可新增或刪除連結。</p>
+
+    <div class="card" data-card data-type="link" data-key="info-links">
+      <div class="card-head"><h3>參考資料</h3><span class="progress" data-progress>共 3 筆</span></div>
+      <ul class="items links" data-list>
+        <li class="item link-item">
+          <span class="icon">📍</span>
+          <a href="https://maps.app.goo.gl/hfYKYfPTrhoVe7qi6?g_st=ac" target="_blank" rel="noopener" class="txt">Google Map 景點清單</a>
+          <button class="del" aria-label="刪除">×</button>
+        </li>
+        <li class="item link-item">
+          <span class="icon">🧳</span>
+          <a href="https://www.daikoku-locker.com/home-1" target="_blank" rel="noopener" class="txt">大阪行李寄放處｜Daikoku Locker</a>
+          <button class="del" aria-label="刪除">×</button>
+        </li>
+        <li class="item link-item">
+          <span class="icon">⛴️</span>
+          <a href="https://nicklee.tw/3217/kobe-bay-shuttle/" target="_blank" rel="noopener" class="txt">神戶高速船搭乘教學</a>
+          <button class="del" aria-label="刪除">×</button>
+        </li>
+      </ul>
+      <form class="add-row add-link" data-add-link>
+        <input type="text" class="f-title" placeholder="名稱" required>
+        <input type="url" class="f-url" placeholder="網址 https://…" required>
+        <button type="submit">新增</button>
+      </form>
+    </div>
+
+    <p class="note-box">勾選、新增、刪除的內容會自動存在你目前使用的瀏覽器裡，關掉再打開也會記得上一次的編輯狀態；每個人在自己手機上開啟時，各自的紀錄互不影響。若清除瀏覽器資料或換裝置開啟，會恢復成預設內容。</p>
+  </section>
+
+</main>
+
+<footer class="credit">神戶・大阪紀行 ｜ 2026.07.07 – 07.13</footer>
+
+<script>
+  // ---- Tab switching ----
+  document.querySelectorAll('.tab').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.tab').forEach(function(b){ b.classList.remove('active'); });
+      document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('active'); });
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  });
+
+  // ---- Checklist / link card progress ----
+  function updateCard(card){
+    if(!card) return;
+    var prog = card.querySelector('[data-progress]');
+    if(!prog) return;
+    if(card.dataset.type === 'link'){
+      var count = card.querySelectorAll('.items > li').length;
+      prog.textContent = '共 ' + count + ' 筆';
+    } else {
+      var boxes = card.querySelectorAll('.items input[type=checkbox]');
+      var checked = card.querySelectorAll('.items input[type=checkbox]:checked').length;
+      prog.textContent = checked + '/' + boxes.length;
+    }
+  }
+
+  function makeCheckItem(text, checked){
+    var li = document.createElement('li');
+    li.className = 'item';
+    li.innerHTML = '<label class="check"><input type="checkbox"><span class="stamp"></span><span class="txt"></span></label><button class="del" aria-label="刪除">×</button>';
+    li.querySelector('.txt').textContent = text;
+    if(checked) li.querySelector('input').checked = true;
+    return li;
+  }
+
+  function makeLinkItem(title, url){
+    var li = document.createElement('li');
+    li.className = 'item link-item';
+    li.innerHTML = '<span class="icon">🔗</span><a href="" target="_blank" rel="noopener" class="txt"></a><button class="del" aria-label="刪除">×</button>';
+    var a = li.querySelector('a');
+    a.href = url;
+    a.textContent = title;
+    return li;
+  }
+
+  // ---- Persistence: each card saves/loads its own state under its data-key,
+  // using the browser's own localStorage so it keeps working once this page
+  // is hosted (e.g. on GitHub Pages) and opened directly, not just inside Claude.
+  // Each person's checkmarks live only in their own browser/device. ----
+  var STORAGE_PREFIX = 'kansai-trip:';
+  var storageOK = (function(){
+    try{
+      var t = '__test__';
+      window.localStorage.setItem(t, '1');
+      window.localStorage.removeItem(t);
+      return true;
+    }catch(err){ return false; }
+  })();
+
+  function serializeCard(card){
+    var list = card.querySelector('[data-list]');
+    var rows = Array.prototype.slice.call(list.children);
+    if(card.dataset.type === 'link'){
+      return rows.map(function(li){
+        var a = li.querySelector('a');
+        return { title: a.textContent, url: a.getAttribute('href') };
+      });
+    }
+    return rows.map(function(li){
+      return { text: li.querySelector('.txt').textContent, checked: li.querySelector('input').checked };
+    });
+  }
+
+  function renderCardFromData(card, data){
+    var list = card.querySelector('[data-list]');
+    list.innerHTML = '';
+    if(card.dataset.type === 'link'){
+      data.forEach(function(d){ list.appendChild(makeLinkItem(d.title, d.url)); });
+    } else {
+      data.forEach(function(d){ list.appendChild(makeCheckItem(d.text, d.checked)); });
+    }
+  }
+
+  function saveCard(card){
+    if(!storageOK) return;
+    var key = card.dataset.key;
+    if(!key) return;
+    try{
+      window.localStorage.setItem(STORAGE_PREFIX + key, JSON.stringify(serializeCard(card)));
+    }catch(err){ /* storage unavailable, edits stay in-memory only for this visit */ }
+  }
+
+  function loadCard(card){
+    var key = card.dataset.key;
+    if(!key || !storageOK){ updateCard(card); return; }
+    var defaults = serializeCard(card); // current hardcoded defaults, before any overwrite
+    try{
+      var raw = window.localStorage.getItem(STORAGE_PREFIX + key);
+      if(raw){
+        var stored = JSON.parse(raw);
+        var existingLabels = stored.map(function(d){ return card.dataset.type === 'link' ? d.title : d.text; });
+        defaults.forEach(function(d){
+          var label = card.dataset.type === 'link' ? d.title : d.text;
+          if(existingLabels.indexOf(label) === -1){
+            stored.push(d); // newly added item in the page that isn't saved yet
+          }
+        });
+        renderCardFromData(card, stored);
+        saveCard(card); // persist the merged list
+      } else {
+        saveCard(card); // first visit: save the default list as the baseline
+      }
+    }catch(err){
+      saveCard(card);
+    }
+    updateCard(card);
+  }
+
+  document.addEventListener('change', function(e){
+    if(e.target.matches('.items input[type=checkbox]')){
+      var card = e.target.closest('[data-card]');
+      updateCard(card);
+      saveCard(card);
+    }
+  });
+
+  document.addEventListener('click', function(e){
+    if(e.target.matches('.del')){
+      var card = e.target.closest('[data-card]');
+      e.target.closest('li').remove();
+      updateCard(card);
+      saveCard(card);
+    }
+  });
+
+  document.addEventListener('submit', function(e){
+    if(e.target.matches('[data-add]')){
+      e.preventDefault();
+      var input = e.target.querySelector('input[type=text]');
+      var val = input.value.trim();
+      if(!val) return;
+      var card = e.target.closest('[data-card]');
+      var list = card.querySelector('[data-list]');
+      list.appendChild(makeCheckItem(val, false));
+      input.value = '';
+      updateCard(card);
+      saveCard(card);
+    }
+    if(e.target.matches('[data-add-link]')){
+      e.preventDefault();
+      var titleInput = e.target.querySelector('.f-title');
+      var urlInput = e.target.querySelector('.f-url');
+      var title = titleInput.value.trim();
+      var url = urlInput.value.trim();
+      if(!title || !url) return;
+      if(!/^https?:\/\//i.test(url)) url = 'https://' + url;
+      var card2 = e.target.closest('[data-card]');
+      var list2 = card2.querySelector('[data-list]');
+      list2.appendChild(makeLinkItem(title, url));
+      titleInput.value = '';
+      urlInput.value = '';
+      updateCard(card2);
+      saveCard(card2);
+    }
+  });
+
+  // ---- init: load saved state (if any) for every card ----
+  document.querySelectorAll('[data-card]').forEach(loadCard);
+</script>
+
+</body>
+</html>
